@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="robot" viewBox="153 71 203 294" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<radialGradient id="o" cx="235.95" cy="197.92" r="55.675" gradientTransform="matrix(.031625 -4.4409 .99998 .007121 50.762 1257.2)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+<linearGradient id="a" bx:pinned="true">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#c2c2c2" offset="1"/>
+</linearGradient>
+<filter id="j" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB" bx:preset="drop-shadow 1 0 2 0 0.95 rgba(0,0,0,0.4)">
+<title>Drop shadow</title>
+<feGaussianBlur in="SourceAlpha"/>
+<feOffset dx="0" dy="2"/>
+<feComponentTransfer result="offsetblur">
+<feFuncA id="spread-ctrl" slope="1.9" type="linear"/>
+</feComponentTransfer>
+<feFlood flood-color="rgba(0,0,0,0.4)"/>
+<feComposite in2="offsetblur" operator="in"/>
+<feMerge>
+<feMergeNode/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+<filter id="k" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB" bx:preset="drop-shadow 1 10 10 0 0.5 rgba(0,0,0,0.3)">
+<feGaussianBlur in="SourceAlpha"/>
+<feOffset dx="10" dy="10"/>
+<feComponentTransfer result="offsetblur">
+<feFuncA id="r" slope="1" type="linear"/>
+</feComponentTransfer>
+<feFlood flood-color="rgba(0,0,0,0.3)"/>
+<feComposite in2="offsetblur" operator="in"/>
+<feMerge>
+<feMergeNode/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+<linearGradient id="l" x1="253.66" x2="253.66" y1="278.77" y2="303.43" gradientTransform="matrix(.9997 -.024329 .10248 4.2109 -27.649 -895.66)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+<filter id="e" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB" bx:preset="inner-shadow 1 0 0 9 1 rgba(0,0,0,0.7)">
+<feOffset dx="0" dy="0"/>
+<feGaussianBlur stdDeviation="9"/>
+<feComposite in="SourceGraphic" operator="out"/>
+<feComponentTransfer result="choke">
+<feFuncA slope="2" type="linear"/>
+</feComponentTransfer>
+<feFlood flood-color="rgba(0,0,0,0.7)" result="color"/>
+<feComposite in="color" in2="choke" operator="in" result="shadow"/>
+<feComposite in="shadow" in2="SourceGraphic"/>
+</filter>
+<linearGradient id="q" x1="168.35" x2="168.35" y1="175.59" y2="282.62" gradientTransform="matrix(.95329 -.24106 .002231 .009096 7.4717 214.58)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+<linearGradient id="b" bx:pinned="true">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#34a997" offset=".71"/>
+<stop stop-color="#1b736d" offset="1"/>
+</linearGradient>
+<filter id="c" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB" bx:preset="inner-shadow 1 0 0 10 1 rgba(0,0,0,0.7)">
+<feOffset dx="0" dy="0"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in="SourceGraphic" operator="out"/>
+<feComponentTransfer result="choke">
+<feFuncA slope="2" type="linear"/>
+</feComponentTransfer>
+<feFlood flood-color="rgba(0,0,0,0.7)" result="color"/>
+<feComposite in="color" in2="choke" operator="in" result="shadow"/>
+<feComposite in="shadow" in2="SourceGraphic"/>
+</filter>
+<linearGradient id="p" x1="316.73" x2="316.73" y1="176.54" y2="283.57" gradientTransform="matrix(.99328 -.28948 .78218 2.4507 -89.557 -346.72)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+<filter id="d" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB" bx:preset="inner-shadow 1 0 0 10 1 rgba(0,0,0,0.7)">
+<feOffset dx="0" dy="0"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in="SourceGraphic" operator="out"/>
+<feComponentTransfer result="choke">
+<feFuncA slope="2" type="linear"/>
+</feComponentTransfer>
+<feFlood flood-color="rgba(0,0,0,0.7)" result="color"/>
+<feComposite in="color" in2="choke" operator="in" result="shadow"/>
+<feComposite in="shadow" in2="SourceGraphic"/>
+</filter>
+<filter id="i" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB" bx:preset="drop-shadow 1 0 339 12 0.78 rgba(0,0,0,0.28)">
+<feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+<feOffset dx="0" dy="339"/>
+<feComponentTransfer result="offsetblur">
+<feFuncA slope="1.56" type="linear"/>
+</feComponentTransfer>
+<feFlood flood-color="rgba(0,0,0,0.28)"/>
+<feComposite in2="offsetblur" operator="in"/>
+<feMerge>
+<feMergeNode/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+<radialGradient id="f" cx="251.87" cy="97.073" r="1.453" gradientUnits="userSpaceOnUse">
+<stop stop-color="rgba(0, 0, 0, 1)" offset="0"/>
+<stop stop-color="rgba(0, 0, 0, 1)" offset="1"/>
+</radialGradient>
+<linearGradient id="n" x1="316.73" x2="316.73" y1="176.54" y2="283.57" gradientTransform="matrix(1.0016 -.013594 .020307 1.4683 -4.5604 -57.733)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+<filter id="h" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB" bx:preset="inner-shadow 1 0 0 10 0.28 rgba(0,0,0,0.7)">
+<feOffset dx="0" dy="0"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in="SourceGraphic" operator="out"/>
+<feComponentTransfer result="choke">
+<feFuncA slope="0.56" type="linear"/>
+</feComponentTransfer>
+<feFlood flood-color="rgba(0,0,0,0.7)" result="color"/>stroke: rgba(0, 0, 0,0)
+<feComposite in="color" in2="choke" operator="in" result="shadow"/>
+<feComposite in="shadow" in2="SourceGraphic"/>
+</filter>
+<linearGradient id="m" x1="168.35" x2="168.35" y1="175.59" y2="282.62" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+<filter id="g" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB" bx:preset="inner-shadow 1 0 0 10 0 rgba(0,0,0,0.7)">
+<feOffset dx="0" dy="0"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in="SourceGraphic" operator="out"/>
+<feComponentTransfer result="choke">
+<feFuncA slope="0" type="linear"/>
+</feComponentTransfer>
+<feFlood flood-color="rgba(0,0,0,0.7)" result="color"/>
+<feComposite in="color" in2="choke" operator="in" result="shadow"/>
+<feComposite in="shadow" in2="SourceGraphic"/>
+</filter>
+</defs>
+<path d="m247.09 116.53h11.351a50 50 0 0 1 50 50v78.918a30 30 0 0 1-30 30h-51.351a30 30 0 0 1-30-30v-78.918a50 50 0 0 1 50-50z" fill="url(#o)" stroke="rgba(0, 0, 0,0)" style="paint-order:fill" bx:shape="rect 197.093 116.526 111.351 158.918 50 50 30 30 1@84cdc5cf"/>
+<path transform="matrix(1 0 .002204 1 -6.6034 -20.439)" d="m241.41 166.69h36.114a21.424 21.424 0 0 1 21.424 21.424v11.981a12 12 0 0 1-12 12h-54.914a12 12 0 0 1-12-12v-12.029a21.376 21.376 0 0 1 21.376-21.376z" filter="url(#j)" stroke="rgba(0, 0, 0,0)" bx:shape="rect 220.034 166.694 78.914 45.405 21.376 21.424 12 12 1@d89c2527"/>
+<ellipse cx="232.77" cy="171.93" rx="11.351" ry="11.081" fill="#7af3f5" stroke="rgba(0, 0, 0,0)">
+<animate attributeName="ry" attributeType="CSS" begin="2s;lefteye.end+2" dur="0.25s" from="0" to="11.081"/>
+</ellipse>
+<ellipse cx="275.2" cy="172.85" rx="11.351" ry="11.081" fill="#7af3f5" stroke="rgba(0, 0, 0,0)">
+<animate attributeName="ry" attributeType="CSS" begin="2s;rightteye.end+2" dur="0.25s" from="0" to="11.081"/>
+</ellipse>
+<ellipse cx="263.31" cy="206.88" rx="3.514" ry="3.243" fill="#fff" filter="url(#k)" stroke="rgba(0, 0, 0,0)" style="isolation:isolate"/>
+<ellipse cx="284.93" cy="206.53" rx="3.514" ry="3.243" fill="#fff" stroke="rgba(0, 0, 0,0)"/>
+<ellipse cx="273.93" cy="206.8" rx="3.514" ry="3.243" fill="#3131e8" stroke="rgba(0, 0, 0,0)"/>
+<path d="m224.74 278.77h57.838c-0.77 33.268-58.507 32.494-57.838 0z" fill="url(#l)" filter="url(#e)" stroke="rgba(0, 0, 0,0)"/>
+<ellipse transform="matrix(1 0 -.071432 1 25.89 5.7149)" cx="168.35" cy="229.11" rx="10.541" ry="53.514" fill="url(#q)" filter="url(#c)" stroke="rgba(0, 0, 0,0)"/>
+<ellipse transform="matrix(1 0 .12471 1 -17.165 5.7149)" cx="316.73" cy="230.05" rx="10.541" ry="53.514" fill="url(#p)" filter="url(#d)" stroke="rgba(0, 0, 0,0)"/>
+<rect x="241.18" y="109.85" width="22.033" height="4.629" rx="4.575" ry="4.575" filter="url(#i)" stroke="rgba(0, 0, 0,0)"/>
+<rect x="250.41" y="84.321" width="2.906" height="25.504" fill="url(#f)" stroke="rgba(0, 0, 0,0)"/>
+<ellipse cx="251.7" cy="80.871" rx="4.197" ry="4.359" fill="#11fff3" stroke="rgba(0, 0, 0,0)"/>
+<path d="m253.9 317.86m-32 0a32 6.977 0 1 0 64 0 32 6.977 0 1 0-64 0zm32 0m-26.96 0a26.96 4.186 0 0 1 53.92 0 26.96 4.186 0 0 1-53.92 0z" fill="rgba(233, 244, 245,0.2)" stroke="rgba(0, 0, 0,0)" bx:shape="ring 253.902 317.864 26.96 4.186 32 6.977 1@0b09acd1"/>
+<path d="m254.3 336.28m-23 0a23 6.698 0 1 0 46 0 23 6.698 0 1 0-46 0zm23 0m-18.922 0a18.922 4.019 0 0 1 37.844 0 18.922 4.019 0 0 1-37.844 0z" fill="rgba(233, 244, 245,0.2)" stroke="rgba(0, 0, 0,0)" bx:shape="ring 254.298 336.282 18.922 4.019 23 6.698 1@73f0db42"/>
+<path d="m254.41 353.58m-14 0a14 5.025 0 1 0 28 0 14 5.025 0 1 0-28 0zm14 0m-10.885 0a10.885 3.015 0 0 1 21.77 0 10.885 3.015 0 0 1-21.77 0z" fill="rgba(233, 244, 245,0.2)" stroke="rgba(0, 0, 0,0)" bx:shape="ring 254.413 353.585 10.885 3.015 14 5.025 1@e2406748"/>
+<path d="m197.06 248.14c7.863 6.654 120.26 6.404 111.12-2.206" fill="none" stroke="rgba(0, 0, 0,0.3)" style="paint-order:stroke"/>
+<path d="m197.39 246.7c7.863 6.654 120.26 6.404 111.12-2.206" fill="none" stroke="rgba(0, 0, 0,0.3)" style="paint-order:stroke"/>
+<ellipse transform="matrix(1 0 .12471 1 -14.411 5.0785)" cx="316.73" cy="230.05" rx="10.541" ry="53.514" fill="url(#n)" filter="url(#h)" stroke="rgba(0, 0, 0,0)"/>
+<ellipse transform="matrix(1 0 -.071432 1 22.755 5.4457)" cx="168.35" cy="229.11" rx="10.541" ry="53.514" fill="url(#m)" filter="url(#g)" stroke="rgba(0, 0, 0,0)"/>
+</svg>
