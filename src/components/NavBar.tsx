@@ -115,7 +115,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static"  elevation={0} style={{background:"#263238", borderRadius:"30px"}}>
+      <AppBar position="static"  elevation={0} style={{background:"#263238"}}>
         <Toolbar>
           <IconButton
             size="large"
