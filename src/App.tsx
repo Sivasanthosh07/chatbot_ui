@@ -1,6 +1,7 @@
 import "./App.css"
 import ChatBox from "./components/ChatBox";
 import NavBar from "./components/NavBar"
+import AdminPage from "./pages/adminPage";
 import HomePage from "./pages/home"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -14,7 +15,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/chatbot" element={<ChatBox />} />
+          <Route path="/chatbot/:id" element={<ChatBox />} />
+          <Route path="/admin" element={<AdminPage />} />
 
         </Routes>
       </BrowserRouter>

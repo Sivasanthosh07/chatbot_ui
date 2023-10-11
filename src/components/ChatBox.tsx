@@ -1,10 +1,17 @@
 import { Button, Grid } from "@mui/material"
 import ChatMessage from "./Chat"
 import { useEffect, useRef, useState } from "react"
+import { useParams } from "react-router-dom";
+import { nanoid } from "nanoid";
 
 function ChatBox() {
     const ref = useRef<any>(null);
+    const messagesEndRef = useRef<any>(null)
     const [chatMsg, setChatMsg] = useState("")
+    const params = useParams();
+    const chatRoomId = nanoid()
+
+
     const [chatHistory, setChatHistory] = useState<[] | any>([
         {
             avatar: "",
@@ -33,17 +40,19 @@ function ChatBox() {
     ])
 
     const handleSend = () => {
-
-        console.log("send via socket..")
-        const chat = {
-            avatar: "",
-            isBot: false,
-            message: chatMsg
+        if(chatMsg.trim()){
+            console.log("send via socket..")
+            const chat = {
+                avatar: "",
+                isBot: false,
+                message: chatMsg
+            }
+            chatHistory.push(chat)
+            setChatHistory([...chatHistory])
+            setChatMsg("")
+            ref.current.focus()  
         }
-        chatHistory.push(chat)
-        setChatHistory([...chatHistory])
-        setChatMsg("")
-        ref.current.focus()
+           
     }
 
     const handleKeyDown = (e: any) => {
@@ -56,22 +65,26 @@ function ChatBox() {
 
     }
 
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+      }
+    
+      useEffect(() => {
 
-
-    // useEffect(()=>{
-    //     setChatHistory(chatHistory)
-    //     console.log(chatMsg)
-    // },[chatHistory])
-
+        scrollToBottom()
+      }, [chatMsg]);
+    
+     
+ 
     return (
         <>
             <div style={{ paddingTop: "20px" }}>
                 <div style={{ height: "78vh", overflowY: 'auto' }}>
                     {
                         chatHistory.map((cht: any) => (
-                            <Grid container style={{ padding: "5px" }}>
+                            <Grid key={nanoid()} container style={{ padding: "5px" }}>
                                 <Grid item xs={3}>
-                                    {cht.isBot && <img className="avatar" src="robo.jpg"></img>}
+                                    {cht.isBot && <img className="avatar" src="/robo.jpg"></img>}
                                 </Grid>
                                 <Grid item xs={6}>
                                     <ChatMessage data={cht}></ChatMessage>
@@ -82,6 +95,7 @@ function ChatBox() {
                             </Grid>
                         ))
                     }
+                     <div ref={messagesEndRef} />
                 </div>
 
                 <Grid container className="send-msg" >
