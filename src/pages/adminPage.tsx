@@ -1,10 +1,14 @@
 import { Button, Grid, IconButton, Input, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, inputClasses, tableCellClasses } from "@mui/material";
 import { styled } from '@mui/material/styles';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FormControl, useFormControlContext } from '@mui/base/FormControl';
 import clsx from 'clsx';
 import { FileUploadOutlined, FileUpload, Label } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { createBotService } from "../core/service";
+import { nanoid } from "nanoid";
+import { SocketContext } from "../core/context/socket";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -26,17 +30,71 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
+
+
 function AdminPage() {
+    const socket = useContext(SocketContext);
+    const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+    const [isLoading, setIsLoading] = useState(false)
+    const [botName, setBotName] = useState("")
+    const [botList, setBotList] = useState([{}])
+    const [sktId, setSktId] = useState("")
 
-    const handleUpload = () => { }
-    const rows = [
-        { id: "1", name: "HDFC", status: "Active" },
-        { id: "2", name: "SBI", status: "Active" },
-    ]
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            setSelectedFiles(event.target.files);
+        }
+    };
 
+    const handleSubmit = async (e: any) => {
+        e.preventDefault()
+        if (!selectedFiles || selectedFiles.length === 0) {
+            alert('Please select one or more files to upload.');
+            return;
+        }
+        setIsLoading(true)
+        const formData = new FormData();
+        for (let i = 0; i < selectedFiles.length; i++) {
+            formData.append('files', selectedFiles[i]);
+        }
+        formData.append("name", botName)
+        const task = await createBotService(formData)
+        console.log(task, task.taskId)
 
+        setSktId(task.taskId)
+        const tempData = {
+            id: nanoid(), name: botName, status: "Pending", taskId: task.taskId
+        }
+        setBotList([...botList, tempData]);
 
-    console.log(rows)
+        // setSktTopic(task.taskId)
+        // props.setSktId(task.taskId)
+
+    }
+
+    useEffect(() => {
+
+        setBotList([
+            { id: "1", name: "HDFC", status: "Active" },
+            { id: "2", name: "SBI", status: "Active" },
+        ])
+    }, [])
+
+    socket.on(sktId, (data: any) => {
+        console.log("skt called", sktId)
+        const objIndex = botList.findIndex(((obj: any) => obj.taskId == sktId));
+        const newData = {
+            id: data.id,
+            name: data.name,
+            status: "Active"
+        }
+
+        botList[objIndex] = newData
+        console.log(botList)
+        setBotList(botList)
+        setIsLoading(false)
+    })
+
     return (
         <>
 
@@ -57,7 +115,7 @@ function AdminPage() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rows.map((row) => (
+                                    {botList.map((row: any) => (
                                         <StyledTableRow key={row.name}>
                                             <StyledTableCell component="th" scope="row">{row.name}</StyledTableCell>
                                             <StyledTableCell >{row.status}</StyledTableCell>
@@ -74,7 +132,7 @@ function AdminPage() {
                         <form style={{ width: "60%", paddingTop: "50px" }}>
                             <FormControl defaultValue="" required>
                                 <Typography >Name</Typography>
-                                <TextField id="outlined-basic" variant="outlined" fullWidth />
+                                <TextField onChange={(e) => setBotName(e.target.value)} id="outlined-basic" variant="outlined" fullWidth />
                             </FormControl>
 
                             <FormControl defaultValue="" style={{ paddingTop: "10px" }} required>
@@ -83,13 +141,14 @@ function AdminPage() {
                                     id="outlined-basic"
                                     variant="outlined"
                                     type="file"
+                                    onChange={handleFileChange}
                                     inputProps={{
                                         multiple: true
                                     }}
                                 />
                             </FormControl>
                             <FormControl defaultValue="" style={{ paddingTop: "10px" }} required >
-                                <Button variant="contained" style={{ background: "#187380" }}>Create</Button>
+                                <Button onClick={handleSubmit} variant="contained" style={{ background: "#187380" }} >Create</Button>
                             </FormControl>
 
                         </form>

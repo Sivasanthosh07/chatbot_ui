@@ -4,12 +4,12 @@ import NavBar from "./components/NavBar"
 import AdminPage from "./pages/adminPage";
 import HomePage from "./pages/home"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { SocketContext, socket } from './core/context/socket';
 
 function App() {
 
   return (
-    <>
+    <SocketContext.Provider value={socket}>
       <NavBar></NavBar>
 
       <BrowserRouter>
@@ -20,7 +20,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-    </>
+    </ SocketContext.Provider>
   )
 }
 

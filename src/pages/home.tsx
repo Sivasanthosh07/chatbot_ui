@@ -1,8 +1,9 @@
 import { Box, FormControl, Grid, MenuItem, OutlinedInput, Select } from "@mui/material";
 import Bot2 from "../components/Bot2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
+import { getBotList } from "../core/service";
 
 
 // mob
@@ -22,13 +23,23 @@ import { nanoid } from "nanoid";
 
 function HomePage() {
     const [bank, setBank] = useState("0")
-    const banks = [{ id: "1", name: "HDFC" }, { id: "2", name: "SBI" }]
+
+    const [listBankBots, setListBankBots] = useState([])
     const navigate = useNavigate()
 
 
-    const handleSelectedItem = (id:any)=>{    
+    const handleSelectedItem = (id: any) => {
         navigate(`/chatbot/${id}`)
     }
+
+    useEffect(() => {
+
+        async function getBanks() {
+            const banks = await getBotList()
+            setListBankBots(banks)
+        }
+        getBanks()
+    }, [])
 
     return (
         <>
@@ -69,8 +80,8 @@ function HomePage() {
                                     <MenuItem key={nanoid()} value={"0"} selected disabled>--select--</MenuItem>
                                     {
 
-                                        banks.map((b) => (
-                                            <MenuItem key={b.id} value={b.id} onClick={()=>handleSelectedItem(b.id)}>{b.name}</MenuItem>
+                                        listBankBots.map((b: any) => (
+                                            <MenuItem key={b.id} value={b.id} onClick={() => handleSelectedItem(b.id)}>{b.name}</MenuItem>
                                         ))
                                     }
 

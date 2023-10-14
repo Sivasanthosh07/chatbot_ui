@@ -1,46 +1,33 @@
 import { Button, Grid } from "@mui/material"
 import ChatMessage from "./Chat"
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom";
 import { nanoid } from "nanoid";
+import { sendMessage } from "../core/service";
+import { SocketContext } from "../core/context/socket";
 
 function ChatBox() {
     const ref = useRef<any>(null);
     const messagesEndRef = useRef<any>(null)
     const [chatMsg, setChatMsg] = useState("")
+    const [sktId, setSktId] = useState("")
     const params = useParams();
     const chatRoomId = nanoid()
+    const socket = useContext(SocketContext);
 
 
     const [chatHistory, setChatHistory] = useState<[] | any>([
+
         {
             avatar: "",
             isBot: true,
-            message: "Hello, User"
-        },
-        {
-            avatar: "",
-            isBot: false,
-            message: "Hello, Bot"
-        },
-        {
-            avatar: "",
-            isBot: true,
-            message: "How can i help you"
-        },
-        {
-            avatar: "",
-            isBot: false,
-            message: "What is interest rate for home loan?"
-        }, {
-            avatar: "",
-            isBot: true,
-            message: "How can i help you"
-        },
+            message: "How can I help you"
+        }
+
     ])
 
     const handleSend = () => {
-        if(chatMsg.trim()){
+        if (chatMsg.trim()) {
             console.log("send via socket..")
             const chat = {
                 avatar: "",
@@ -49,11 +36,36 @@ function ChatBox() {
             }
             chatHistory.push(chat)
             setChatHistory([...chatHistory])
+
+            async function sendMsg() {
+                const task = await sendMessage({
+                    id: params.id,
+                    name: "HDFC",
+                    question: chatMsg
+
+                })
+                console.log("async skt ::", task.taskId)
+                setSktId(task.taskId)
+            }
+            sendMsg()
+
             setChatMsg("")
-            ref.current.focus()  
+            ref.current.focus()
         }
-           
+
     }
+
+    socket.on(sktId, (data: any) => {
+        console.log("skt called", sktId, data)
+        const botReply = {
+            avatar: "",
+            isBot: true,
+            message: data.answer
+        }
+        chatHistory.push(botReply)
+        setChatHistory([...chatHistory])
+
+    })
 
     const handleKeyDown = (e: any) => {
         var key = e.keyCode;
@@ -67,15 +79,15 @@ function ChatBox() {
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-      }
-    
-      useEffect(() => {
+    }
+
+    useEffect(() => {
 
         scrollToBottom()
-      }, [chatMsg]);
-    
-     
- 
+    }, [chatHistory]);
+
+
+
     return (
         <>
             <div style={{ paddingTop: "20px" }}>
@@ -95,7 +107,7 @@ function ChatBox() {
                             </Grid>
                         ))
                     }
-                     <div ref={messagesEndRef} />
+                    <div ref={messagesEndRef} />
                 </div>
 
                 <Grid container className="send-msg" >
