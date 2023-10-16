@@ -5,7 +5,7 @@ import { FormControl, useFormControlContext } from '@mui/base/FormControl';
 import clsx from 'clsx';
 import { FileUploadOutlined, FileUpload, Label } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { createBotService, getBotList } from "../core/service";
+import { createBotService, deleteBot, getBotList } from "../core/service";
 import { nanoid } from "nanoid";
 import { SocketContext } from "../core/context/socket";
 
@@ -78,8 +78,14 @@ function AdminPage() {
             setBotList(banks)
         }
         getBanks()
-       
+
     }, [])
+
+    const handleDelete = async (id: string) => {
+        await deleteBot(id)
+        const banks = await getBotList()
+        setBotList(banks)
+    }
 
     socket.on(sktId, (data: any) => {
         console.log("skt called", sktId)
@@ -120,7 +126,7 @@ function AdminPage() {
                                         <StyledTableRow key={row.name}>
                                             <StyledTableCell component="th" scope="row"><a href={`/chatbot/${row.id}`}>{row.name}</a></StyledTableCell>
                                             <StyledTableCell >{row.status}</StyledTableCell>
-                                            <StyledTableCell align="center"> <Button color={"error"} variant="text" startIcon={<DeleteIcon />}>Delete</Button></StyledTableCell>
+                                            <StyledTableCell align="center"> <Button color={"error"} onClick={() => handleDelete(row.id)} variant="text" startIcon={<DeleteIcon />}>Delete</Button></StyledTableCell>
 
                                         </StyledTableRow>
                                     ))}
