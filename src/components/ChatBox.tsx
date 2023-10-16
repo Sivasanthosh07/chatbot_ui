@@ -12,7 +12,7 @@ function ChatBox() {
     const [chatMsg, setChatMsg] = useState("")
     const [sktId, setSktId] = useState("")
     const params = useParams();
-    const chatRoomId = nanoid()
+    const [isLoading, setIsLoading] = useState(false)
     const socket = useContext(SocketContext);
 
 
@@ -51,6 +51,7 @@ function ChatBox() {
 
             setChatMsg("")
             ref.current.focus()
+            setIsLoading(true)
         }
 
     }
@@ -64,6 +65,7 @@ function ChatBox() {
         }
         chatHistory.push(botReply)
         setChatHistory([...chatHistory])
+        setIsLoading(false)
 
     })
 
@@ -99,14 +101,15 @@ function ChatBox() {
                                     {cht.isBot && <img className="avatar" src="/robo.jpg"></img>}
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <ChatMessage data={cht}></ChatMessage>
+                                    <ChatMessage data={cht}></ChatMessage>                                   
                                 </Grid>
                                 <Grid item xs={3}>
 
                                 </Grid>
                             </Grid>
-                        ))
+                        ))                        
                     }
+                   
                     <div ref={messagesEndRef} />
                 </div>
 
@@ -116,7 +119,8 @@ function ChatBox() {
                     </Grid>
                     <Grid item xs={6}>
                         <form  >
-                            <div style={{ display: "flex" }}>
+                        {isLoading && <p className="loading">Typing</p>}
+                            <div style={{ display: "flex", marginBottom:"10px" }}>
                                 <textarea ref={ref} value={chatMsg} onKeyDown={e => handleKeyDown(e)} onChange={e => setChatMsg(e.target.value)} style={{ width: "99%", height: "80px", padding: "12px", fontSize: "14px" }}></textarea>
                                 <Button onClick={handleSend} color="primary" variant="contained" >Send</Button>
                             </div>

@@ -5,7 +5,7 @@ import { FormControl, useFormControlContext } from '@mui/base/FormControl';
 import clsx from 'clsx';
 import { FileUploadOutlined, FileUpload, Label } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { createBotService } from "../core/service";
+import { createBotService, getBotList } from "../core/service";
 import { nanoid } from "nanoid";
 import { SocketContext } from "../core/context/socket";
 
@@ -73,11 +73,12 @@ function AdminPage() {
     }
 
     useEffect(() => {
-
-        setBotList([
-            { id: "1", name: "HDFC", status: "Active" },
-            { id: "2", name: "SBI", status: "Active" },
-        ])
+        async function getBanks() {
+            const banks = await getBotList()
+            setBotList(banks)
+        }
+        getBanks()
+       
     }, [])
 
     socket.on(sktId, (data: any) => {
@@ -117,7 +118,7 @@ function AdminPage() {
                                 <TableBody>
                                     {botList.map((row: any) => (
                                         <StyledTableRow key={row.name}>
-                                            <StyledTableCell component="th" scope="row">{row.name}</StyledTableCell>
+                                            <StyledTableCell component="th" scope="row"><a href={`/chatbot/${row.id}`}>{row.name}</a></StyledTableCell>
                                             <StyledTableCell >{row.status}</StyledTableCell>
                                             <StyledTableCell align="center"> <Button color={"error"} variant="text" startIcon={<DeleteIcon />}>Delete</Button></StyledTableCell>
 

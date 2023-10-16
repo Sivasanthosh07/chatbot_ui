@@ -126,7 +126,7 @@ export default function NavBar() {
             sx={{ mr: 2 }}
             href='/'
           >
-            <img src={"/vite.svg"}></img>
+            <img src={"/logo.svg"} style={{width:"50px"}}></img>
           </IconButton>
           <Typography
             variant="h6"
@@ -134,7 +134,7 @@ export default function NavBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Chatbot
+            Financial Advisor
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
