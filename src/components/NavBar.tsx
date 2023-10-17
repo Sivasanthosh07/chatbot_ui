@@ -134,7 +134,7 @@ export default function NavBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Financial Advisor
+            Chatbot
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
