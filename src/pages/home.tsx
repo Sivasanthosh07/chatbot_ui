@@ -28,8 +28,8 @@ function HomePage() {
     const navigate = useNavigate()
 
 
-    const handleSelectedItem = (id: any) => {
-        navigate(`/chatbot/${id}`)
+    const handleSelectedItem = (name: string, id: any) => {
+        navigate(`/chatbot/${name}/${id}`)
     }
 
     useEffect(() => {
@@ -81,7 +81,7 @@ function HomePage() {
                                     {
 
                                         listBankBots.map((b: any) => (
-                                            <MenuItem key={b.id} value={b.id} onClick={() => handleSelectedItem(b.id)}>{b.name}</MenuItem>
+                                            <MenuItem key={b.id} value={b.id} onClick={() => handleSelectedItem(b.name, b.id)}>{b.name}</MenuItem>
                                         ))
                                     }
 
