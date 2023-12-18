@@ -50,7 +50,7 @@ function HomePage() {
                     </Grid>
                     <Grid item xs={4}  >
 
-                        <h1 style={{ color: "#37474F" }} >Please choose a bank from the list below</h1>
+                        <h1 style={{ color: "#37474F" }} >Please choose a chatbot from the list below</h1>
 
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl fullWidth>
