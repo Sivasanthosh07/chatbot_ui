@@ -40,7 +40,7 @@ function ChatBox() {
             async function sendMsg() {
                 const task = await sendMessage({
                     id: params.id,
-                    name: "HDFC",
+                    name: params.name,
                     question: chatMsg
 
                 })
@@ -92,8 +92,20 @@ function ChatBox() {
 
     return (
         <>
+            <div style={{ marginTop: "5px" }}>
+                <Grid container spacing={0} direction={"column"} alignItems={"center"} >
+                    <Grid item xs={3}>
+                    </Grid>
+                    <Grid item xs={6} >
+                        <span style={{ fontSize: "26px", fontWeight: "bolder" }}>{params.name}  <span style={{ color: "blue" }}>- BOT</span></span>
+                    </Grid>
+                    <Grid item xs={3}>
+                    </Grid>
+                </Grid>
+            </div>
+
             <div style={{ paddingTop: "20px" }}>
-                <div style={{ height: "78vh", overflowY: 'auto' }}>
+                <div style={{ height: "73vh", overflowY: 'auto' }}>
                     {
                         chatHistory.map((cht: any) => (
                             <Grid key={nanoid()} container style={{ padding: "5px" }}>
@@ -101,15 +113,15 @@ function ChatBox() {
                                     {cht.isBot && <img className="avatar" src="/robo.jpg"></img>}
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <ChatMessage data={cht}></ChatMessage>                                   
+                                    <ChatMessage data={cht}></ChatMessage>
                                 </Grid>
                                 <Grid item xs={3}>
 
                                 </Grid>
                             </Grid>
-                        ))                        
+                        ))
                     }
-                   
+
                     <div ref={messagesEndRef} />
                 </div>
 
@@ -119,8 +131,8 @@ function ChatBox() {
                     </Grid>
                     <Grid item xs={6}>
                         <form  >
-                        {isLoading && <p className="loading">Typing</p>}
-                            <div style={{ display: "flex", marginBottom:"10px" }}>
+                            {isLoading && <p className="loading">Typing</p>}
+                            <div style={{ display: "flex", marginBottom: "10px" }}>
                                 <textarea ref={ref} value={chatMsg} onKeyDown={e => handleKeyDown(e)} onChange={e => setChatMsg(e.target.value)} style={{ width: "99%", height: "80px", padding: "12px", fontSize: "14px" }}></textarea>
                                 <Button onClick={handleSend} color="primary" variant="contained" >Send</Button>
                             </div>
