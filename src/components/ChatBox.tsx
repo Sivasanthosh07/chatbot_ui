@@ -56,18 +56,22 @@ function ChatBox() {
 
     }
 
-    socket.on(sktId, (data: any) => {
-        console.log("skt called", sktId, data)
-        const botReply = {
-            avatar: "",
-            isBot: true,
-            message: data.answer
-        }
-        chatHistory.push(botReply)
-        setChatHistory([...chatHistory])
-        setIsLoading(false)
 
-    })
+    useEffect(() => {
+        socket.on(sktId, (data: any) => {
+            console.log("skt called", sktId, data)
+            const botReply = {
+                avatar: "",
+                isBot: true,
+                message: data.answer
+            }
+            chatHistory.push(botReply)
+            setChatHistory([...chatHistory])
+            setIsLoading(false)
+
+        })
+    }, [sktId])
+
 
     const handleKeyDown = (e: any) => {
         var key = e.keyCode;
