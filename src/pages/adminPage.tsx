@@ -124,7 +124,7 @@ function AdminPage() {
                                 <TableBody>
                                     {botList.map((row: any) => (
                                         <StyledTableRow key={row.name}>
-                                            <StyledTableCell component="th" scope="row"><a href={`/chatbot/${row.id}`}>{row.name}</a></StyledTableCell>
+                                            <StyledTableCell component="th" scope="row"><a href={`/chatbot/${row.name}/${row.id}`}>{row.name}</a></StyledTableCell>
                                             <StyledTableCell >{row.status}</StyledTableCell>
                                             <StyledTableCell align="center"> <Button color={"error"} onClick={() => handleDelete(row.id)} variant="text" startIcon={<DeleteIcon />}>Delete</Button></StyledTableCell>
 
